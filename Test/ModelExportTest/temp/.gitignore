@@ -1,0 +1,5 @@
+# Files created by export unit tests will be created and destroyed in this folder,
+# it should be possible to keep files for debugging purposes but we must ensure
+# the git repository doesn't include any of them.
+*
+!.gitignore

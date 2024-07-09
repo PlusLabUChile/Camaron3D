@@ -1,0 +1,18 @@
+Camaron.pro.user*
+glm
+ui_*.h
+debug
+release
+recentFiles
+object_script*
+Makefile*
+
+# Added this files format to ignore (files created when Camaron is compiled)
+.vscode
+.qmake.stash
+Camaron
+*.o
+ui
+moc_*.h
+moc_*.cpp
+qrc_*.cpp
