@@ -84,9 +84,6 @@ class Visualizador : public QMainWindow
 		void finishCalculateKernel();
 		void openKernelWindow();
 
-		void closeQDockWidget();
-
-
 	private:
 		static const unsigned int MAX_RECENT_FILES = 5;
 		void exportModel(Model*);

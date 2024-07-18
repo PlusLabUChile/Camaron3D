@@ -64,7 +64,7 @@ background-color: rgb(255, 255, 255);
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <layout class="QVBoxLayout" name="centralVerticalLayout">
       <property name="sizeConstraint">
        <enum>QLayout::SetMaximumSize</enum>
@@ -126,24 +126,11 @@ background-color: rgb(255, 255, 255);
     <property name="title">
      <string>Windows</string>
     </property>
-    <widget class="QMenu" name="menuStatics">
-     <property name="title">
-      <string>Statistics</string>
-     </property>
-     <addaction name="actionModel_General_Statics"/>
-     <addaction name="actionStatics"/>
-    </widget>
-    <widget class="QMenu" name="menuSelection">
-     <property name="title">
-      <string>Selection</string>
-     </property>
-     <addaction name="actionSelection_Table"/>
-     <addaction name="actionSelection_strategies"/>
-    </widget>
-    <addaction name="actionEvaluation_Strategies"/>
-    <addaction name="menuSelection"/>
-    <addaction name="actionRenderers"/>
-    <addaction name="menuStatics"/>
+    <addaction name="actionSelection_Table"/>
+    <addaction name="separator"/>
+    <addaction name="actionModel_General_Statics"/>
+    <addaction name="actionStatics"/>
+    <addaction name="separator"/>
     <addaction name="actionPolyhedron_Kernel"/>
    </widget>
    <addaction name="menuVisualizador"/>
@@ -164,6 +151,10 @@ background-color: rgb(255, 255, 255);
    <addaction name="separator"/>
    <addaction name="actionModel_General_Statics"/>
    <addaction name="actionStatics"/>
+   <addaction name="separator"/>
+   <addaction name="actionSelection_Table"/>
+   <addaction name="separator"/>
+   <addaction name="actionPolyhedron_Kernel"/>
    <addaction name="separator"/>
    <addaction name="actionPreferences"/>
    <addaction name="actionKey_Shortcuts"/>
@@ -571,10 +562,10 @@ background-color: rgb(255, 255, 255);
   </action>
   <action name="actionEvaluation_Strategies">
    <property name="checkable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Evaluation Strategies</string>
@@ -593,16 +584,20 @@ background-color: rgb(255, 255, 255);
   </action>
   <action name="actionRenderers">
    <property name="checkable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Renderers</string>
    </property>
   </action>
   <action name="actionSelection_Table">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/table.svg</normaloff>UI/Images/feather/table.svg</iconset>
+   </property>
    <property name="text">
     <string>Selection Table</string>
    </property>
@@ -679,7 +674,7 @@ background-color: rgb(255, 255, 255);
   <action name="actionKey_Shortcuts">
    <property name="icon">
     <iconset>
-     <normaloff>UI/Images/feather/Keyboard.svg</normaloff>UI/Images/feather/Keyboard.svg</iconset>
+     <normaloff>UI/Images/streamline/Keyboard.svg</normaloff>UI/Images/streamline/Keyboard.svg</iconset>
    </property>
    <property name="text">
     <string>Key Shortcuts</string>
@@ -713,6 +708,10 @@ background-color: rgb(255, 255, 255);
   <action name="actionPolyhedron_Kernel">
    <property name="enabled">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/streamline/Pyramid-Shape--Streamline-Core.svg</normaloff>UI/Images/streamline/Pyramid-Shape--Streamline-Core.svg</iconset>
    </property>
    <property name="text">
     <string>Polyhedron Kernel</string>

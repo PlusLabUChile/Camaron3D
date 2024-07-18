@@ -1000,7 +1000,3 @@ void Visualizador::openKernelWindow(){
 	kernelPop.hide();
 	kernelWidget.show();
 }
-
-void Visualizador::closeQDockWidget(){
-	std::cout << "end" << std::endl;
-}
