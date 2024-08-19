@@ -113,7 +113,7 @@ In addition, Camarón leverages current technologies to get it's optimum perform
 Camarón is part of &lt;a href=&quot;https://meshinglab.dcc.uchile.cl/&quot;&gt;+Lab&lt;/a&gt;, a laboratory of the Departament of Computer Science at the Uniersity of Chile dedicated to the study and development of algortihms and tools for the creation , manipulation and visualization of polygonal meshes in two and three dimension. This lab was founded by &lt;a href=&quot;https://meshinglab.dcc.uchile.cl/author/nancy-hitschfeld-kahler/&quot;&gt;Prof. Dr. Nancy Hitshfield&lt;/a&gt;.</string>
            </property>
            <property name="textFormat">
-            <enum>Qt::MarkdownText</enum>
+            <enum>Qt::RichText</enum>
            </property>
            <property name="scaledContents">
             <bool>false</bool>
@@ -166,7 +166,7 @@ And Alvaro Toro optimizated Camarón about it's memory usages, introduced new fu
 You can found the source code of Camarón in the following &lt;a href=&quot;https://github.com/PlusLabUChile/Camaron3D/&quot;&gt;link&lt;/a&gt;</string>
            </property>
            <property name="textFormat">
-            <enum>Qt::MarkdownText</enum>
+            <enum>Qt::RichText</enum>
            </property>
            <property name="scaledContents">
             <bool>false</bool>
@@ -217,7 +217,7 @@ You can found Camarón user manual in the following link:
 https://github.com/PlusLabUChile/Camaron3D/blob/main/Manual/main.pdf</string>
            </property>
            <property name="textFormat">
-            <enum>Qt::MarkdownText</enum>
+            <enum>Qt::RichText</enum>
            </property>
            <property name="scaledContents">
             <bool>false</bool>
@@ -280,7 +280,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</string>
            </property>
            <property name="textFormat">
-            <enum>Qt::MarkdownText</enum>
+            <enum>Qt::RichText</enum>
            </property>
            <property name="scaledContents">
             <bool>false</bool>
@@ -317,7 +317,7 @@ You should have received a copy of the GNU General Public License along with thi
 * &lt;a href=&quot;https://github.com/TommasoSorgente/polyhedron_kernel&quot;&gt;Polyhedron Kernel Algorithm repository&lt;/a&gt;</string>
            </property>
            <property name="textFormat">
-            <enum>Qt::MarkdownText</enum>
+            <enum>Qt::RichText</enum>
            </property>
            <property name="scaledContents">
             <bool>false</bool>
