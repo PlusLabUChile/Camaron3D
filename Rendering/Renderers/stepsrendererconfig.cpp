@@ -100,7 +100,7 @@ void StepsRendererConfig::readConfig(){
 void StepsRendererConfig::readInputIsolevels() {
 	isolevels.clear();
 	QString stepsStr = ui->lineEdit_steps->displayText();
-	#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	#if QT_MAJOR_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 		const auto skip_empty_parts = Qt::SkipEmptyParts;
 	#else
 		const auto skip_empty_parts = QString::SkipEmptyParts;
