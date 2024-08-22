@@ -553,7 +553,6 @@ void Visualizador::getLoadedModelFromLoadingStrategy(){
 	if( loaded ) {
 		this->selection.reset();
 		this->model = loaded;
-		std::cout << "getLoadedModelFromLoadingStrategy: loaded model\n";
 		setupEvaluationStrategiesStatics();
 		this->camera->resetCameraPositions();
 		this->customGLViewer->refreshHelpers();

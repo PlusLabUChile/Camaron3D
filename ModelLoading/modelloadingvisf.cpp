@@ -5,6 +5,7 @@
 #include "Model/Element/Vertex.h"
 #include "Utils/endianess.h"
 #include "ModelLoading/MeshProcessor.h"
+#include <iostream>
 
 ModelLoadingVisF::ModelLoadingVisF():
 	ModelLoadingStrategy("VisF","visf"){}
@@ -21,6 +22,7 @@ ModelLoadingVisF::~ModelLoadingVisF(){
 * overriding the inherited version with this one instead.
 */
 void ModelLoadingVisF::processPolygons(Model* mesh){
+	std::cout << "Visf " << "processPolygons" << std::endl;
 	MeshProcessor::completeVertexPolygonRelations(mesh);
 	emit stageComplete(ModelLoadingProgressDialog::COMPLETED_VERTEX_POLYGON_R);
 	MeshProcessor::calculateNormalsPolygons(mesh);
@@ -30,6 +32,7 @@ void ModelLoadingVisF::processPolygons(Model* mesh){
 	}
 
 void ModelLoadingVisF::processPolyhedrons(Model* mesh) {
+	std::cout << "Visf " << "processPolyhedrons" << std::endl;
 	MeshProcessor::completeVertexPolygonRelations(mesh);
 	emit stageComplete(ModelLoadingProgressDialog::COMPLETED_VERTEX_POLYGON_R);
 	MeshProcessor::completePolygonPolyhedronRelations(mesh);
@@ -150,6 +153,7 @@ Model* ModelLoadingVisF::load(std::string filename){
 		}
 
 	parser.closeFile();
+	std::cout << "end load visf\n";
 	return model;
 	}
 
@@ -167,6 +171,8 @@ Model* ModelLoadingVisF::load(std::string filename){
 * @throws ModelLoadingException
 */
 void ModelLoadingVisF::readHeader(){
+		std::cout << "Visf " << "readHeader" << std::endl;
+
 	unsigned char currentSystemEndianness = Endianess::findEndianness();
 	unsigned char fileEncoding;
 
@@ -229,6 +235,7 @@ void ModelLoadingVisF::readHeader(){
 * @throw ModelLoadingException
 */
 void ModelLoadingVisF::readVertices(Model* mesh){
+	std::cout << "Visf " << "readVertices" << std::endl;
 	std::vector<float> &bounds = mesh->getBounds();
 	int nVertices;
 
@@ -274,6 +281,7 @@ void ModelLoadingVisF::readVertices(Model* mesh){
 *  @throws ModelLoadingException
 */
 void ModelLoadingVisF::readPolygons(Model* mesh){
+	std::cout << "Visf " << "readPolygons" << std::endl;
 	int nPolygons;
 
 	parser >> nPolygons;
@@ -292,7 +300,9 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 	emit setLoadedVertices(mesh->getVerticesCount());
 
 	relations->getVertexPolygons().reserve(nPolygons);
+	relations->getPolygonsPolygons().reserve(nPolygons);
 
+	std::cout << "Visf " << "readPolygons" << std::endl;
 	for(int i = 0;i < nPolygons; i++){
 		int nVertices;
 		parser >> nVertices;
@@ -312,19 +322,16 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 			relations->addVertexInPolygon(i, vertexId);	
 		}
 
-		// getEdgesAndPolygons(mesh, relations->getVertexPolygonsById(i), i);
-
-
 		parser.prepareNextLine();
 		if(i%5000==0)
 			emit setLoadedPolygons(i);
 	}
+	std::cout << "Visf " << "readPolygons" << std::endl;
 	emit setLoadedPolygons(nPolygons);
 	int hasNeighbors;
 	parser >> hasNeighbors;
 	parser.prepareNextLine();
-
-	relations->getPolygonsPolygons().reserve(nPolygons);
+	std::cout << "hasNeighbors " << hasNeighbors << std::endl;
 
 	if(hasNeighbors){
 		for(int i = 0;i<nPolygons;i++){
@@ -346,6 +353,7 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 		parser.prepareNextLine();
 	}
 	else{
+		MeshProcessor::completeVertexPolygonRelations(mesh);
 		MeshProcessor::completePolygonPolygonRelations(mesh);
 	}
 	emit stageComplete(ModelLoadingProgressDialog::COMPLETED_POLYGON_POLYGON_R);
@@ -362,6 +370,7 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 * @throws ModelLoadingException
 */
 void ModelLoadingVisF::readPolyhedrons(Model* mesh){
+	std::cout << "Visf " << "readPolyhedrons" << std::endl;
 	int nPolyhedrons;
 	parser >> nPolyhedrons;
 
