@@ -151,7 +151,6 @@ Model* ModelLoadingVisF::load(std::string filename){
 		}
 
 	parser.closeFile();
-	std::cout << "end load visf\n";
 	return model;
 	}
 
@@ -361,7 +360,6 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 * @throws ModelLoadingException
 */
 void ModelLoadingVisF::readPolyhedrons(Model* mesh){
-	std::cout << "Visf " << "readPolyhedrons" << std::endl;
 	int nPolyhedrons;
 	parser >> nPolyhedrons;
 
