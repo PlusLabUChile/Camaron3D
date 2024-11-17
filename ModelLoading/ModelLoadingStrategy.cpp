@@ -34,9 +34,6 @@ void ModelLoadingStrategy::run(){
 		loadedModel = 0;
 		loadedModel = load(modelPath);
 		if(loadedModel){	///@todo remove conditional if model cannot be 0
-			std::cout << "n vertices: " << loadedModel->getVerticesCount() << std::endl;
-			std::cout << "n polygon: " << loadedModel->getPolygonsCount() << std::endl;
-			std::cout << "n polyhedrons: " << loadedModel->getPolyhedronsCount() << std::endl;
 			completeMesh(loadedModel);
 			emit stageComplete(ModelLoadingProgressDialog::BASE_MODE_READY);
 			emit modelLoadedSuccesfully();
@@ -108,17 +105,13 @@ void ModelLoadingStrategy::getEdgesAndPolygons(Model* mesh, std::vector<unsigned
 */
 	
 void ModelLoadingStrategy::processPolygons(Model* mesh){
-	std::cout << "processPolygons\n";
 	MeshProcessor::completeVertexPolygonRelations(mesh);
 	emit stageComplete(ModelLoadingProgressDialog::COMPLETED_VERTEX_POLYGON_R);
 	// MeshProcessor::completePolygonPolygonRelations(mesh);
 	emit stageComplete(ModelLoadingProgressDialog::COMPLETED_POLYGON_POLYGON_R);
-	std::cout << "processPolygons\n";
 	MeshProcessor::calculateNormalsPolygons(mesh);
-	std::cout << "processPolygons\n";
 	MeshProcessor::calculateNormalsVertices(mesh);
 	emit stageComplete(ModelLoadingProgressDialog::NORMALS_CALCULATED);
-	std::cout << "processPolygons\n";
 	}
 
 void ModelLoadingStrategy::processPolyhedrons(Model* mesh){

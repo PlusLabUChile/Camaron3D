@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1110</width>
-    <height>772</height>
+    <width>1124</width>
+    <height>868</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -64,7 +64,7 @@ background-color: rgb(255, 255, 255);
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <layout class="QVBoxLayout" name="centralVerticalLayout">
       <property name="sizeConstraint">
        <enum>QLayout::SetMaximumSize</enum>
@@ -78,7 +78,7 @@ background-color: rgb(255, 255, 255);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1110</width>
+     <width>1124</width>
      <height>22</height>
     </rect>
    </property>
@@ -102,8 +102,9 @@ background-color: rgb(255, 255, 255);
     <addaction name="actionImport_property_field"/>
     <addaction name="menuRecent_files"/>
     <addaction name="menuExport_As"/>
-    <addaction name="actionScreeenshot"/>
     <addaction name="actionClose_Model"/>
+    <addaction name="separator"/>
+    <addaction name="actionScreeenshot"/>
     <addaction name="separator"/>
     <addaction name="actionExit_2"/>
    </widget>
@@ -114,36 +115,23 @@ background-color: rgb(255, 255, 255);
     <addaction name="actionKey_Shortcuts"/>
     <addaction name="actionPreferences"/>
    </widget>
-   <widget class="QMenu" name="menuWindow">
-    <property name="title">
-     <string>Windows</string>
-    </property>
-    <widget class="QMenu" name="menuStatics">
-     <property name="title">
-      <string>Statistics</string>
-     </property>
-     <addaction name="actionModel_General_Statics"/>
-     <addaction name="actionStatics"/>
-    </widget>
-    <widget class="QMenu" name="menuSelection">
-     <property name="title">
-      <string>Selection</string>
-     </property>
-     <addaction name="actionSelection_Table"/>
-     <addaction name="actionSelection_strategies"/>
-    </widget>
-    <addaction name="actionEvaluation_Strategies"/>
-    <addaction name="menuSelection"/>
-    <addaction name="actionRenderers"/>
-    <addaction name="menuStatics"/>
-    <addaction name="actionPolyhedron_Kernel"/>
-   </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
     <addaction name="actionDetected_Video_Adapter"/>
     <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Windows</string>
+    </property>
+    <addaction name="actionSelection_Table"/>
+    <addaction name="separator"/>
+    <addaction name="actionModel_General_Statics"/>
+    <addaction name="actionStatics"/>
+    <addaction name="separator"/>
+    <addaction name="actionPolyhedron_Kernel"/>
    </widget>
    <addaction name="menuVisualizador"/>
    <addaction name="menuTools"/>
@@ -152,11 +140,25 @@ background-color: rgb(255, 255, 255);
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionExport_complete"/>
+   <addaction name="actionClose_Model"/>
+   <addaction name="separator"/>
+   <addaction name="actionModel_General_Statics"/>
+   <addaction name="actionStatics"/>
+   <addaction name="separator"/>
+   <addaction name="actionSelection_Table"/>
+   <addaction name="separator"/>
+   <addaction name="actionPolyhedron_Kernel"/>
+   <addaction name="separator"/>
+   <addaction name="actionPreferences"/>
+   <addaction name="actionKey_Shortcuts"/>
+   <addaction name="actionAbout"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_evaluation_strategies">
    <property name="sizePolicy">
@@ -167,9 +169,15 @@ background-color: rgb(255, 255, 255);
    </property>
    <property name="minimumSize">
     <size>
-     <width>271</width>
+     <width>281</width>
      <height>161</height>
     </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="windowTitle">
     <string>Evaluation Strategies</string>
@@ -289,8 +297,11 @@ background-color: rgb(255, 255, 255);
      <bold>false</bold>
     </font>
    </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
    <property name="features">
-    <set>QDockWidget::AllDockWidgetFeatures</set>
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="windowTitle">
     <string>Selection Strategies</string>
@@ -395,6 +406,12 @@ background-color: rgb(255, 255, 255);
      <width>249</width>
      <height>182</height>
     </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="windowTitle">
     <string>Renderer</string>
@@ -527,8 +544,15 @@ background-color: rgb(255, 255, 255);
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/file.svg</normaloff>UI/Images/feather/file.svg</iconset>
+   </property>
    <property name="text">
     <string>Open...</string>
+   </property>
+   <property name="shortcut">
+    <string>O</string>
    </property>
   </action>
   <action name="actionExit">
@@ -537,41 +561,79 @@ background-color: rgb(255, 255, 255);
    </property>
   </action>
   <action name="actionEvaluation_Strategies">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Evaluation Strategies</string>
    </property>
   </action>
   <action name="actionSelection_strategies">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Selection Strategies</string>
    </property>
   </action>
   <action name="actionRenderers">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Renderers</string>
    </property>
   </action>
   <action name="actionSelection_Table">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/table.svg</normaloff>UI/Images/feather/table.svg</iconset>
+   </property>
    <property name="text">
     <string>Selection Table</string>
    </property>
   </action>
   <action name="actionClose_Model">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/x-circle.svg</normaloff>UI/Images/feather/x-circle.svg</iconset>
+   </property>
    <property name="text">
     <string>Close Model</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/info.svg</normaloff>UI/Images/feather/info.svg</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
   </action>
   <action name="actionStatics">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/bar-chart.svg</normaloff>UI/Images/feather/bar-chart.svg</iconset>
+   </property>
    <property name="text">
     <string>Elements Statistics</string>
    </property>
   </action>
   <action name="actionPreferences">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/settings.svg</normaloff>UI/Images/feather/settings.svg</iconset>
+   </property>
    <property name="text">
     <string>Main Preferences</string>
    </property>
@@ -582,6 +644,10 @@ background-color: rgb(255, 255, 255);
    </property>
   </action>
   <action name="actionExport_complete">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/download.svg</normaloff>UI/Images/feather/download.svg</iconset>
+   </property>
    <property name="text">
     <string>Complete Model As...</string>
    </property>
@@ -592,6 +658,10 @@ background-color: rgb(255, 255, 255);
    </property>
   </action>
   <action name="actionModel_General_Statics">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/feather/clipboard.svg</normaloff>UI/Images/feather/clipboard.svg</iconset>
+   </property>
    <property name="text">
     <string>Model General Statistics</string>
    </property>
@@ -602,6 +672,10 @@ background-color: rgb(255, 255, 255);
    </property>
   </action>
   <action name="actionKey_Shortcuts">
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/streamline/Keyboard.svg</normaloff>UI/Images/streamline/Keyboard.svg</iconset>
+   </property>
    <property name="text">
     <string>Key Shortcuts</string>
    </property>
@@ -635,11 +709,18 @@ background-color: rgb(255, 255, 255);
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>UI/Images/streamline/Pyramid-Shape--Streamline-Core.svg</normaloff>UI/Images/streamline/Pyramid-Shape--Streamline-Core.svg</iconset>
+   </property>
    <property name="text">
     <string>Polyhedron Kernel</string>
    </property>
   </action>
   <action name="actionScreeenshot">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Screeenshot</string>
    </property>

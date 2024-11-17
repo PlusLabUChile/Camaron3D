@@ -293,6 +293,7 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 
 	relations->getVertexPolygons().reserve(nPolygons);
 
+
 	for(int i = 0;i < nPolygons; i++){
 		int nVertices;
 		parser >> nVertices;
@@ -303,7 +304,6 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 
 		polygons.emplace_back(i);
 
-		relations->getPolygonsPolygons().emplace_back();
 		relations->getVertexPolygons().emplace_back();
 
 		for(int j = 0;j<nVertices;j++){
@@ -311,9 +311,6 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 			parser >> vertexId;
 			relations->addVertexInPolygon(i, vertexId);	
 		}
-
-		// getEdgesAndPolygons(mesh, relations->getVertexPolygonsById(i), i);
-
 
 		parser.prepareNextLine();
 		if(i%5000==0)
@@ -346,6 +343,7 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 		parser.prepareNextLine();
 	}
 	else{
+		MeshProcessor::completeVertexPolygonRelations(mesh);
 		MeshProcessor::completePolygonPolygonRelations(mesh);
 	}
 	emit stageComplete(ModelLoadingProgressDialog::COMPLETED_POLYGON_POLYGON_R);

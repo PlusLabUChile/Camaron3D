@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>433</height>
+    <height>440</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -43,6 +43,12 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="font">
          <font>
           <family>Arno Pro Smbd</family>
@@ -62,84 +68,269 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_2" native="true"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>GNU General Public License</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>250</height>
-         </size>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-        <property name="plainText">
-         <string>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+       <widget class="QWidget" name="widget_2" native="true">
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>711</width>
+           <height>351</height>
+          </rect>
+         </property>
+         <property name="currentIndex">
+          <number>4</number>
+         </property>
+         <widget class="QWidget" name="tab_5">
+          <attribute name="title">
+           <string>Description</string>
+          </attribute>
+          <widget class="QLabel" name="label_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>701</width>
+             <height>311</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>Camarón is an innovative multi-platform freely available software used to display and analyze mixed 3-D geometric meshes. This application has different renders that allows the user to load, study, evaluate and export geometric meshes in various formats.
+
+
+
+
+
+In addition, Camarón leverages current technologies to get it's optimum performance in order to allow the analysis of large geometric meshes (over 1 million items).
+
+
+
+
+
+Camarón is part of &lt;a href=&quot;https://meshinglab.dcc.uchile.cl/&quot;&gt;+Lab&lt;/a&gt;, a laboratory of the Departament of Computer Science at the Uniersity of Chile dedicated to the study and development of algortihms and tools for the creation , manipulation and visualization of polygonal meshes in two and three dimension. This lab was founded by &lt;a href=&quot;https://meshinglab.dcc.uchile.cl/author/nancy-hitschfeld-kahler/&quot;&gt;Prof. Dr. Nancy Hitshfield&lt;/a&gt;.</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>Previous Works</string>
+          </attribute>
+          <widget class="QLabel" name="label_6">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>701</width>
+             <height>311</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>
+
+Camarón was created in 2012 by Aldo Canepa Garay as part of his Civil Engineering degree in Computer Science at University of Chile. Then three others ex-students of have worked on Camarón in different years: 
+
+
+
+Gonzalo Infante worked on the visualization of scalar values using isolines on the models.
+
+
+
+Julio Albornoz did optimizations about memory uses and performance, he did a restructuration of different classes to clean the source code.
+
+
+
+And Alvaro Toro optimizated Camarón about it's memory usages, introduced new functionality including a &quot;Kernel Computation Alhortihm using Geometry Approch&quot; created by &lt;a href=&quot;https://arxiv.org/abs/2202.06625&quot;&gt;Tommaso Sorgente, Silvia Biasotti, Michela Spagnuolo&lt;/a&gt; and worked on human computer interaction of Camarón.
+
+
+
+
+
+You can found the source code of Camarón in the following &lt;a href=&quot;https://github.com/PlusLabUChile/Camaron3D/&quot;&gt;link&lt;/a&gt;</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>Manual</string>
+          </attribute>
+          <widget class="QLabel" name="label_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>701</width>
+             <height>311</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>There is avaliable an user's manual that it can found information about tasks that the users can do using this software.
+
+The content of that document is:
+
+* Instruction for installation in Windows and Linux
+* Model loading and export
+* Evaluations algorithms
+* Statistics
+* Rendering
+* Selection Strategies
+* Controller
+* Polyhedron Kernel
+* Bugs
+
+
+
+You can found Camarón user manual in the following link:
+
+https://github.com/PlusLabUChile/Camaron3D/blob/main/Manual/main.pdf</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_6">
+          <attribute name="title">
+           <string>License</string>
+          </attribute>
+          <widget class="QLabel" name="label_4">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>10</y>
+             <width>714</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>GNU General Public License</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_5">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>40</y>
+             <width>701</width>
+             <height>231</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Author: Aldo Canepa Garay</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Contact: waldoc@gmail.com</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>v0.22</string>
-        </property>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_3">
+          <attribute name="title">
+           <string>Credits</string>
+          </attribute>
+          <widget class="QLabel" name="label_7">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>701</width>
+             <height>311</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>The followings project are used in Camarón:
+
+* &lt;a href=&quot;https://github.com/feathericons/feather?tab=readme-ov-file&quot;&gt;Feathers icons&lt;/a&gt;
+* &lt;a href=&quot;https://www.streamlinehq.com/icons/core-line-free&quot;&gt;Streamline Free set&lt;/a&gt;
+* &lt;a href=&quot;https://github.com/TommasoSorgente/polyhedron_kernel&quot;&gt;Polyhedron Kernel Algorithm repository&lt;/a&gt;</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+        </widget>
        </widget>
       </item>
      </layout>

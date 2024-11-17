@@ -54,7 +54,6 @@ Visualizador::Visualizador(QWidget *parent) :
 	kernelPop(this)
 {
 	ui->setupUi(this);	// Setup own UI form
-	ui->dockWidget_evaluation_strategies->hide();
 	evalStrategyConfigWidget = 0;
 	renderersList = new RenderersList(ui->widget_list_renderer_cont);
 	renderersList->show();
@@ -554,7 +553,6 @@ void Visualizador::getLoadedModelFromLoadingStrategy(){
 	if( loaded ) {
 		this->selection.reset();
 		this->model = loaded;
-		std::cout << "getLoadedModelFromLoadingStrategy: loaded model\n";
 		setupEvaluationStrategiesStatics();
 		this->camera->resetCameraPositions();
 		this->customGLViewer->refreshHelpers();
@@ -716,6 +714,9 @@ void Visualizador::evaluate()
 	std::cout << "Applying Strategy " << strategy->getName() << " on the model." << std::endl;
 #endif
 	strategy->evaluateElementsFrom(this->model);
+	QMessageBox::information(0,
+		QString("Evaluation ended!"),
+		QString("The algorithm ended his execution! \nYou can see the results in Statics"), QMessageBox::Ok);
 }
 
 
@@ -748,6 +749,9 @@ void Visualizador::selectUsingSelectionStrategy(){
 		this->customGLViewer->forceReRendering();
 	}
 	std::cout << "Visualizador::selectUsingSelectionStrategy(): " << crossTimer.getTranscurredSeconds() << " seconds" << std::endl;
+	QMessageBox::information(0,
+		QString("Selection ended!"),
+		QString("The selected strategy ended his execution!\n You can see the result changing to \n Flat Color, Wireframes"), QMessageBox::Ok);
 }
 
 
@@ -772,6 +776,9 @@ void Visualizador::closeModel(){
 		}
 		fillRendererComboBox();
 		renderersList->removeAllRenderers();
+		QMessageBox::information(0,
+			QString("Model Closed!"),
+			QString("Camarón delete the information of the uploaded model!"), QMessageBox::Ok);
 	}
 	enableAndDisableWidgets();
 }
@@ -961,29 +968,11 @@ void Visualizador::callCalculateKernel(){
 	// Check if it's a model loaded
 	if(!this->model){
 		std::cout << "Model Not loaded\n";
+		QMessageBox::information(0,
+		QString("Error!"),
+		QString("There is not model loaded!"), QMessageBox::Ok);
 		return;
 	}
-
-	/* Check if model is convex
-	EvaluationStrategy* max_inter_angle = this->evaluationStrategyRegistry->getRegistryByKeyInstance(5);
-	auto result = max_inter_angle->getEvaluationResults(this->model);
-	bool isConcave = false;
-	for(auto value : result){
-		if(value > 3.1415) {
-			isConcave = true;
-			break;
-		}
-	}
-
-	// If model is convex, it will draw the original model
-	if(!isConcave){
-		rmodel->setKernelComputed(true);
-		kernelWidget.setModelName(model->getFilename());
-		kernelWidget.setValuesKernelModel(model->getVerticesCount(),model->getPolygonsCount(),true);
-		std::cout << "Model is Convex\n";
-		return;
-	}
-	*/
 
 	// Call object that compute Polyhedron Kernel
 	kernelDialog.setupForNewModel(model->getVerticesCount(), model->getPolygonsCount());

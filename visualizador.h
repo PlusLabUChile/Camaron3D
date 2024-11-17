@@ -5,6 +5,7 @@
 #define TAB_SELECT_USING_EVALUATION_STRATEGY_INDEX 1
 #include <QMainWindow>
 #include <QWidget>
+#include <QRect>
 #include <list>
 #include "rendererconfigpopup.h"
 #include "SelectionStrategies/Selection.h"
@@ -82,7 +83,6 @@ class Visualizador : public QMainWindow
 		void callCalculateKernel();
 		void finishCalculateKernel();
 		void openKernelWindow();
-
 
 	private:
 		static const unsigned int MAX_RECENT_FILES = 5;
