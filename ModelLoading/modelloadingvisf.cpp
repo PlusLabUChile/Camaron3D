@@ -5,7 +5,6 @@
 #include "Model/Element/Vertex.h"
 #include "Utils/endianess.h"
 #include "ModelLoading/MeshProcessor.h"
-#include <iostream>
 
 ModelLoadingVisF::ModelLoadingVisF():
 	ModelLoadingStrategy("VisF","visf"){}
@@ -293,7 +292,7 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 	emit setLoadedVertices(mesh->getVerticesCount());
 
 	relations->getVertexPolygons().reserve(nPolygons);
-	relations->getPolygonsPolygons().reserve(nPolygons);
+
 
 	for(int i = 0;i < nPolygons; i++){
 		int nVertices;
@@ -305,7 +304,6 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 
 		polygons.emplace_back(i);
 
-		relations->getPolygonsPolygons().emplace_back();
 		relations->getVertexPolygons().emplace_back();
 
 		for(int j = 0;j<nVertices;j++){
@@ -323,8 +321,10 @@ void ModelLoadingVisF::readPolygons(Model* mesh){
 	parser >> hasNeighbors;
 	parser.prepareNextLine();
 
+	relations->getPolygonsPolygons().reserve(nPolygons);
+
 	if(hasNeighbors){
-		for(int i = 0;i<hasNeighbors;i++){
+		for(int i = 0;i<nPolygons;i++){
 			int nNeighbors;
 			parser >> nNeighbors;
 
