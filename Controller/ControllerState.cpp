@@ -5,6 +5,8 @@ ControllerState::~ControllerState(){};
 void ControllerState::setControllerContext(ControllerContext* context){
     this->context = context;
 }
+void ControllerState::init(){}
+void ControllerState::end(){}
 CustomGLViewer* ControllerState::getViewer(){
     return this->context->getViewer();
 }

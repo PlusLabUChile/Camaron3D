@@ -27,6 +27,23 @@ class ControllerState {
         void setControllerContext(ControllerContext* context);
 
         /**
+         * Return the CustomGLViewer class instance
+         */
+        CustomGLViewer* getViewer();
+
+        /**
+         * Init state of controllerState
+         * 
+         */
+        virtual void init();
+
+        /**
+         * Init state of controllerState
+         * 
+         */
+        virtual void end();
+
+        /**
          * Handle a event where the user press a key 
          * @param QKeyEvent Qt event that has the information 
          */
@@ -61,5 +78,4 @@ class ControllerState {
          * @param QKeyEvent Qt event that has the information 
          */
         virtual void handleMouseMoveEvent(QMouseEvent*);
-        CustomGLViewer* getViewer();
 };

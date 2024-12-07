@@ -556,6 +556,7 @@ void Visualizador::getLoadedModelFromLoadingStrategy(){
 		setupEvaluationStrategiesStatics();
 		this->camera->resetCameraPositions();
 		this->customGLViewer->refreshHelpers();
+		this->customGLViewer->reset();
 		this->selectionTableView.refreshSelectedElementsTable();
 		enableAndDisableWidgets();
 		progressDialog.stageComplete(ModelLoadingProgressDialog::CAMARON_ELEMENTS_CONFIGURATED);

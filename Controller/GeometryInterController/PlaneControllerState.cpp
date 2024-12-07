@@ -9,6 +9,22 @@ PlaneControllerState::PlaneControllerState(){
 
 PlaneControllerState::~PlaneControllerState(){
 }
+
+void PlaneControllerState::init(){
+	ConvexGeometryIntersectionRendererConfig* configRenderer = (ConvexGeometryIntersectionRendererConfig*) getViewer()->getRenderer()->getRendererConfigWidget();
+    if(configRenderer){
+        for (unsigned int i = 0; i < configRenderer->valuePlanes.size(); i++){
+            Plane* actualPlane = configRenderer->valuePlanes[i];
+            actualPlane->setOrigin(glm::vec3(0.0f));
+        }
+        updatePlaneInputs(configRenderer);
+    }
+}
+
+void PlaneControllerState::end(){
+
+}
+
  
 void PlaneControllerState::handleKeyPressEvent(QKeyEvent* event){
 
@@ -140,22 +156,22 @@ void PlaneControllerState::handleMouseMoveEvent(QMouseEvent* event){
 		Plane* actualPlane = configRenderer->valuePlanes[idPlane];
 		if(context->keyboardState.isKeyPressed(Qt::Key_Control)){
 			// Change position of main model
-			getViewer()->tra += glm::vec3(dx,-dy,0) * glm::vec3(0.1);
+			getViewer()->tra += glm::vec3(dx,-dy,0) * glm::vec3(this->context->getActualValueMod());
 			getViewer()->needsRefreshDrawing = true;
 		}
         else if (context->keyboardState.isKeyPressed(Qt::Key_Q)){
             // Can move sphere geometry (change center)            
-            actualPlane->setOrigin(actualPlane->getOrigin() + glm::vec3(dx,-dy,0) * glm::vec3(speedMov));
+            actualPlane->setOrigin(actualPlane->getOrigin() + glm::vec3(dx,-dy,0) * glm::vec3(this->context->getActualValueMod()));
 			updatePlaneInputs(configRenderer);
         }
         else if (context->keyboardState.isKeyPressed(Qt::Key_A)){
             // Can move sphere geometry (change center)            
-			actualPlane->setOrigin(actualPlane->getOrigin() + glm::vec3(0,-dy,dx) * glm::vec3(speedMov));
+			actualPlane->setOrigin(actualPlane->getOrigin() + glm::vec3(0,-dy,dx) * glm::vec3(this->context->getActualValueMod()));
 			updatePlaneInputs(configRenderer);
         }
         else if (context->keyboardState.isKeyPressed(Qt::Key_Z)){
             // Can move sphere geometry (change center)            
-			actualPlane->setOrigin(actualPlane->getOrigin() + glm::vec3(dx,0,-dy) * glm::vec3(speedMov));
+			actualPlane->setOrigin(actualPlane->getOrigin() + glm::vec3(dx,0,-dy) * glm::vec3(this->context->getActualValueMod()));
 			updatePlaneInputs(configRenderer);
         }
 		else {

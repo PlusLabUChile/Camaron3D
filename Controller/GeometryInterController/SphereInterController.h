@@ -25,6 +25,8 @@ class SphereInterController : public ControllerState {
         virtual ~SphereInterController();
     
         // Methods that need to be overriding for this controller context
+        virtual void init();
+        virtual void end();
         virtual void handleKeyPressEvent(QKeyEvent*);
         virtual void handleKeyReleaseEvent(QKeyEvent*);
         virtual void handleMouseReleaseEvent(QMouseEvent*);
