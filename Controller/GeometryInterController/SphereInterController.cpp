@@ -8,6 +8,20 @@ SphereInterController::SphereInterController(){
 
 SphereInterController::~SphereInterController(){
 }
+
+void SphereInterController::init(){
+	ConvexGeometryIntersectionRendererConfig* configRenderer = (ConvexGeometryIntersectionRendererConfig*) getViewer()->getRenderer()->getRendererConfigWidget();
+    if(configRenderer){
+        configRenderer->radiusSphere = this->context->getMaxLengthModel();
+        configRenderer->centerSphere = glm::vec3(0.0f);
+        updateSphereInputs(configRenderer);
+    }
+}
+
+void SphereInterController::end(){
+
+}
+
  
 void SphereInterController::handleKeyPressEvent(QKeyEvent* event){
 	if ( !event->isAutoRepeat() ) {
@@ -95,29 +109,29 @@ void SphereInterController::handleMouseMoveEvent(QMouseEvent* event){
 		ConvexGeometryIntersectionRendererConfig* configRenderer = (ConvexGeometryIntersectionRendererConfig*) getViewer()->getRenderer()->getRendererConfigWidget();
 		if(context->keyboardState.isKeyPressed(Qt::Key_Control)){
 			// Change position of main model.
-			getViewer()->tra += glm::vec3(dx,-dy,0) * glm::vec3(0.1);
+			getViewer()->tra += glm::vec3(dx,-dy,0) * glm::vec3(this->context->getActualValueMod());
 			getViewer()->needsRefreshDrawing = true;
 		}
         else if (context->keyboardState.isKeyPressed(Qt::Key_Q)){
             // Can move sphere geometry (change center)  .          
-            configRenderer->centerSphere += glm::vec3(dx,-dy,0) * glm::vec3(speedMov);
+            configRenderer->centerSphere += glm::vec3(dx,-dy,0) * glm::vec3(this->context->getActualValueMod());
 			updateSphereInputs(configRenderer);
         }
         else if (context->keyboardState.isKeyPressed(Qt::Key_A)){
             // Can move sphere geometry (change center) .           
-            configRenderer->centerSphere += glm::vec3(0,-dy,dx) * glm::vec3(speedMov);
+            configRenderer->centerSphere += glm::vec3(0,-dy,dx) * glm::vec3(this->context->getActualValueMod());
 			updateSphereInputs(configRenderer);
         }
         else if (context->keyboardState.isKeyPressed(Qt::Key_Z)){
             // Can move sphere geometry (change center)   .         
-            configRenderer->centerSphere += glm::vec3(dx,0,-dy) * glm::vec3(speedMov);
+            configRenderer->centerSphere += glm::vec3(dx,0,-dy) * glm::vec3(this->context->getActualValueMod());
 			updateSphereInputs(configRenderer);
         }
         else if (context->keyboardState.isKeyPressed(Qt::Key_W)){
             // Can modify radius value of sphere geometry.
 			glm::vec2 sphereScreenPoint = getViewer()->getCamera()->getScreenPosition(configRenderer->centerSphere);
 			float dotValue = glm::dot(glm::vec2(context->lastPos.x(), context->lastPos.y()) - sphereScreenPoint, glm::vec2(dx,dy));
-			int step = (dotValue > 0) ? 3 : -3;
+			float step = (dotValue > 0) ? this->context->getActualValueMod() * 100 : -this->context->getActualValueMod() * 100;
 			configRenderer->radiusSphere += step;
 			updateSphereInputs(configRenderer);
         }

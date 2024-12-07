@@ -70,6 +70,10 @@ void CustomGLViewer::resetCameraPositions(){
 	rot = glm::vec3(0.0f,0.0f,0.0f);
 	tra = glm::vec3(0.0f,0.0f,50.0f);
 	zoom = 1.0f;
+
+	this->camera->setViewMatrix(glm::lookAt(glm::vec3(0.0,0.0,0.0),
+											 glm::vec3(0.0,0.0,0.0),
+											 glm::vec3(0.0,1.0,0.0)));
 }
 
 void CustomGLViewer::setCameraLookingXY(){
@@ -78,8 +82,16 @@ void CustomGLViewer::setCameraLookingXY(){
 }
 
 void CustomGLViewer::resetController(){
-	controller->transitionTo(controller->modelController);
+	controller->reset();
+
 	drawEditGeometryMode = false;
+}
+
+void CustomGLViewer::reset()
+{
+	resetCameraPositions();
+	resetController();
+	refreshHelpers();
 }
 
 void CustomGLViewer::setRenderer(Renderer * r){
@@ -733,4 +745,8 @@ void CustomGLViewer::setAxesVisible(bool value){
 
 CameraCamaron* CustomGLViewer::getCamera(){
 	return this->camera;
+}
+
+RModel* CustomGLViewer::getRModel(){
+	return this->rmodel;
 }

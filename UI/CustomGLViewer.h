@@ -37,19 +37,26 @@ class CustomGLViewer: public QGLWidget
 		void resetCameraPositions();
 		void setCameraLookingXY();
 		void resetController();
+		void reset();
 		CameraCamaron* getCamera();
+		RModel* getRModel();
 
 		// Variables
 		glm::vec3 rot;
 		glm::vec3 tra;        
 		float zoom;
+
+		// Variables Mouse Selection
 		int dxSelectBox,dySelectBox;
 		bool drawBox;
+
+		// Variables Draw element's ID
 		bool drawIds;
         int elementTypeIds;
         bool needsRefreshDrawing;
         bool boxSelect;
 
+		// Variables Geometry Intersection
 		bool drawEditGeometryMode;
 
 	public slots:

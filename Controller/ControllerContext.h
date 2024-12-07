@@ -4,6 +4,7 @@
 #include <QWheelEvent>
 #include <glm/glm.hpp>
 #include "Utils/keyboardstate.h"
+#include "Rendering/RModel/rmodel.h"
 
 // List of Controller State
 class ControllerState;
@@ -88,8 +89,46 @@ class ControllerContext{
         void requestMouseReleaseEvent(QMouseEvent*);
 
         // Get-Set function of viewer
+        /**
+         * Getter and Setter functions of CustomGLViewer
+         */
         void setViewer(CustomGLViewer*);
         CustomGLViewer* getViewer();
+
+        /**
+         * Set values of MaxValueMod, MinValueMod and MaxLengthModel
+         * @param newMaxValue 
+         * @param newMinValue 
+         * @param newLengthValue 
+         */
+        void setStepRangeModel(float, float, float);
+
+        /**
+         * Return private ControllerContext parameter MaxValueMod
+         */
+        float getMaxValueMod();
+
+        /**
+         * Return private ControllerContext parameter MinValueMod
+         */
+        float getMinValueMod();
+
+        /**
+         * Return private ControllerContext parameter ActualValueMod.
+         * That parameter is used to change values of model and ConvexGeometry Figures (Sphere and Planes) in the 3D Spaces.
+         */
+        float getActualValueMod();
+
+        /**
+         * Return private ControllerContext parameter MaxLenghtModel.
+         */
+        float getMaxLengthModel();
+
+        /**
+         * Reset parameters of all ControllerStates to theirs defaults values
+         */
+        void reset();
+
 
         // Parameters for keyboard inputs
         KeyboardState keyboardState;
@@ -100,4 +139,9 @@ class ControllerContext{
         ControllerState* modelController;
         ControllerState* sphereController;
         ControllerState* planeController;
+
+    private:
+        // Modifications values
+        float maxValueMod, minValueMod, actualValueMod, maxLengthModel;
+        
 };
