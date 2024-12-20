@@ -7,11 +7,9 @@
 #include "Exceptions/propertydefnotfoundexception.h"
 
 Model::Model(std::string f): filename(f){
-
 	bounds.resize(6);
 	bounds[0] = bounds[1] = bounds[2] = std::numeric_limits<float>::max();
 	bounds[3] = bounds[4] = bounds[5] = std::numeric_limits<float>::lowest();
-
 	relations = new ElementsRelations();
 	}
 
@@ -29,7 +27,18 @@ std::vector<vis::Vertex>& Model::getVertices(){
 	}
 
 vis::Vertex* Model::getVertex(unsigned int vid){
-	return &vertices[this->getElementsRelations()->getPositionInContainerById(vid)];
+	if(this->getElementsRelations()->getDiffVertex()) vid--;
+	return &vertices[vid];
+}
+
+vis::Polygon* Model::getPolygon(unsigned int pid){
+	if(this->getElementsRelations()->getDiffPolygon()) pid--;
+	return &polygons[pid];
+}
+
+vis::Polyhedron* Model::getPolyhedron(unsigned int pid){
+	if(this->getElementsRelations()->getDiffPolyhedron()) pid--;
+	return &polyhedrons[pid];
 }
 
 std::vector<vis::Edge>& Model::getAdditionalEdges(){
