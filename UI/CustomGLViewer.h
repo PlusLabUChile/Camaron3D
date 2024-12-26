@@ -16,6 +16,7 @@
 class Selection;
 class Renderer;
 class RModel;
+class Model;
 class FrameBufferObjectHandle;
 class CustomGLViewer: public QGLWidget
 {
@@ -27,8 +28,6 @@ class CustomGLViewer: public QGLWidget
 		~CustomGLViewer();
 		QSize minimumSizeHint() const;
 		QSize sizeHint() const;
-		void setRenderer(Renderer*);
-		Renderer* getRenderer();
 		void setSelection(Selection*);
 		void refreshRenderedModel();
 		void glewInitiated();
@@ -36,10 +35,18 @@ class CustomGLViewer: public QGLWidget
 		void setAxesVisible(bool value);
 		void resetCameraPositions();
 		void setCameraLookingXY();
-		void resetController();
-		void reset();
+
+		// Reset functions
+		void resetController(Model*);
+		void reset(Model*);
+		void toModelController();
+
+		// Getters Functions
+		void setRenderer(Renderer*);
+		Renderer* getRenderer();
 		CameraCamaron* getCamera();
 		RModel* getRModel();
+		ControllerContext* getController();
 
 		// Variables
 		glm::vec3 rot;

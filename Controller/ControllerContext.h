@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include "Utils/keyboardstate.h"
 #include "Rendering/RModel/rmodel.h"
+#include "Model/Model.h"
 
 // List of Controller State
 class ControllerState;
@@ -127,7 +128,7 @@ class ControllerContext{
         /**
          * Reset parameters of all ControllerStates to theirs defaults values
          */
-        void reset();
+        void reset(Model*);
 
 
         // Parameters for keyboard inputs

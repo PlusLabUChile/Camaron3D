@@ -66,6 +66,10 @@ CustomGLViewer::~CustomGLViewer()
 	SceneHelpers::reset();
 }
 
+ControllerContext* CustomGLViewer::getController(){
+	return controller;
+}
+
 void CustomGLViewer::resetCameraPositions(){
 	rot = glm::vec3(0.0f,0.0f,0.0f);
 	tra = glm::vec3(0.0f,0.0f,50.0f);
@@ -81,16 +85,19 @@ void CustomGLViewer::setCameraLookingXY(){
 	tra = glm::vec3(0.0f,0.0f,50.0f);
 }
 
-void CustomGLViewer::resetController(){
-	controller->reset();
-
+void CustomGLViewer::resetController(Model* model){
+	controller->reset(model);
 	drawEditGeometryMode = false;
 }
 
-void CustomGLViewer::reset()
+void CustomGLViewer::toModelController(){
+	controller->transitionTo(controller->modelController);
+}
+
+void CustomGLViewer::reset(Model* model)
 {
 	resetCameraPositions();
-	resetController();
+	resetController(model);
 	refreshHelpers();
 }
 
