@@ -56,6 +56,10 @@ class Model {
 		std::vector<vis::Polygon>& getPolygons();
 		std::vector<vis::Polyhedron>& getPolyhedrons();
 
+		vis::Vertex* getVertex(unsigned int);
+		vis::Polygon* getPolygon(unsigned int);
+		vis::Polyhedron* getPolyhedron(unsigned int);
+
 		/// Relations 
 		ElementsRelations* getElementsRelations();
 
@@ -78,8 +82,6 @@ class Model {
 		// Ele Node specific workaround (see below)
 		bool is2D();
 		void set2D(bool b);
-
-		vis::Vertex* getVertex(unsigned int);
 
 	private:
 		std::string filename;

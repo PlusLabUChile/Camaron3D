@@ -556,7 +556,7 @@ void Visualizador::getLoadedModelFromLoadingStrategy(){
 		setupEvaluationStrategiesStatics();
 		this->camera->resetCameraPositions();
 		this->customGLViewer->refreshHelpers();
-		this->customGLViewer->reset();
+		this->customGLViewer->reset(this->model);
 		this->selectionTableView.refreshSelectedElementsTable();
 		enableAndDisableWidgets();
 		progressDialog.stageComplete(ModelLoadingProgressDialog::CAMARON_ELEMENTS_CONFIGURATED);
@@ -766,7 +766,7 @@ void Visualizador::closeModel(){
 		this->selection.reset();
 		this->selectionTableView.refreshSelectedElementsTable();
 		this->customGLViewer->forceReRendering();
-		this->customGLViewer->resetController();
+		this->customGLViewer->toModelController();
 		this->kernelWidget.resetValues();
 		delete model;
 		model = (Model*)0;
@@ -836,7 +836,7 @@ void Visualizador::secondaryRendererRemoved(){
 }
 
 void Visualizador::changeRenderer(int index){
-	this->customGLViewer->resetController();
+    this->customGLViewer->toModelController();
 	int key = this->ui->comboRenderer->itemData(index).toInt();
 	this->rendererConfigPopup.hide();
 	this->rendererConfigPopup.cleanConfigQWidget();
@@ -858,6 +858,18 @@ void Visualizador::checkInformationRenderer(int index){
 	{
 	case 3:
 		if(!rmodel->isKernelComputed()) kernelPop.show();
+		break;
+
+	case 7:
+	{
+		ConvexGeometryIntersectionRendererConfig* configConvex = (ConvexGeometryIntersectionRendererConfig*) this->customGLViewer->getRenderer()->getRendererConfigWidget();
+        configConvex->radiusSphere = this->customGLViewer->getController()->getMaxLengthModel();
+        configConvex->centerSphere = glm::vec3(0.0f);
+		configConvex->updateSphereInputs();
+		configConvex->updatePlaneInputs();
+		this->customGLViewer->applyRendererConfigChanges();
+		this->customGLViewer->needsRefreshDrawing = true;
+	}
 		break;
 	
 	default:

@@ -23,6 +23,7 @@ ConvexGeometryIntersectionRendererConfig::ConvexGeometryIntersectionRendererConf
 	actualIndexTab = 0;
 	connect(ui->tabWidget_convexGeom, SIGNAL(tabBarClicked(int)), this, SLOT(changeConvexGeometry(int)));
 	connect(ui->pushButton_addplane, SIGNAL(clicked()), this, SLOT(addPlane()));
+	connect(ui->resetValuesButton, SIGNAL(clicked()), this, SLOT(resetValuesFigures()));
 	
 	planesContainer = new QVBoxLayout(this);
 	QWidget* container = new QWidget();
@@ -94,22 +95,13 @@ void ConvexGeometryIntersectionRendererConfig::changeConvexGeometry(int index){
 		break;
 	
 	case 1:
-		if(true){
-			valuePlanes.clear();
-			for(unsigned int i = 0; i < planes.size(); i++){
-				planes[i]->readConfiguration();
-				valuePlanes.push_back(new Plane(planes[i]->getPosition(),planes[i]->getNormal()));
-			}
-		}
-		else{
-			for(unsigned int i = 0; i < planes.size(); i++){
-				planes[i]->readConfiguration();
-				valuePlanes[i]->setOrigin(planes[i]->getPosition());
-				valuePlanes[i]->setNormal(planes[i]->getNormal());
-				valuePlanes[i]->getPointsPlane();
-			}
+		valuePlanes.clear();
+		for(unsigned int i = 0; i < planes.size(); i++){
+			planes[i]->readConfiguration();
+			valuePlanes.push_back(new Plane(planes[i]->getPosition(),planes[i]->getNormal()));
 		}
 		break;
+		
 	default:
 		break;
 	}

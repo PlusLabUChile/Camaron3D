@@ -220,6 +220,15 @@ class ElementsRelations{
          */
         void checkVertices();
 
+
+        void setDiffVertex(bool);
+        void setDiffPolygon(bool);
+        void setDiffPolyhedron(bool);
+
+        bool getDiffVertex();
+        bool getDiffPolygon();
+        bool getDiffPolyhedron();
+
     protected:
     private:
         // Containers
@@ -236,6 +245,8 @@ class ElementsRelations{
         */
         std::map<unsigned int, unsigned int> vertexIndexInPosition;
         bool diffVertex;
+        bool diffPolygon;
+        bool diffPolyhedron;
 };
 
 #endif // ELEMENTSRELATIONS_H

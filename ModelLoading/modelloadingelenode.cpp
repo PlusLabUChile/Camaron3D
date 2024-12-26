@@ -112,6 +112,7 @@ void ModelLoadingEleNode::readHeaderEle(Model* model){
 		case 3:
 		case 6: {
 			model->reservePolygons(numberOfNodesPerElement);
+			model->set2D(true);
 			break;
 			}
 		case 4:
@@ -139,7 +140,8 @@ void ModelLoadingEleNode::readHeaderNode(Model* model){
 	parser >> numberOfNodes >> dimensions >> numberOfAttributesPerNode >> numberOfBoundaryMarkers;
 	parser.closeFile();
 
-	model->set2D(dimensions==2);
+    // Buscar sobre el significado del segundo valor dimension
+    // model->set2D(dimensions==2);
 	model->reserveVertices(numberOfNodes);
 	}
 
@@ -166,6 +168,7 @@ void ModelLoadingEleNode::readVertices(Model* mesh){
 
 	int index;
 	float x = 0.0f, y = 0.0f, z = 0.0f;
+	vertices.reserve(numberOfNodes);
 	for(int i = 0; i< numberOfNodes; i++){
 		parser >> index >> x >> y;
 		if(dimensions>2)
@@ -178,7 +181,7 @@ void ModelLoadingEleNode::readVertices(Model* mesh){
 		vertices.emplace_back(index, x, y, z);
 		updateBoundingBox(bounds, x, y, z);
 
-		relations->addIdAndPositionInContainerVertex(index, i);
+		if(i==0) mesh->getElementsRelations()->setDiffVertex(!(i == index));
 
 		if(i%5000==0)
 			emit setLoadedVertices(i);
@@ -217,6 +220,7 @@ void ModelLoadingEleNode::readPolygons(Model* mesh){
 			throw ModelLoadingException(mesh->getFilename(), "ERROR: Reached EOF before reading all requested polygons");
 			}
 		triangles.emplace_back(index);
+		if(i==0) mesh->getElementsRelations()->setDiffPolygon(!(i == index));
 		
 		mesh->getElementsRelations()->getVertexPolygons().emplace_back();
 
@@ -275,6 +279,8 @@ void ModelLoadingEleNode::readPolyhedrons(Model* mesh){
 			}
 
 		tetrahedrons.emplace_back(tetrahedronIndex);
+        mesh->getElementsRelations()->getPolygonsPolyhedrons().emplace_back();
+		if(i==0) mesh->getElementsRelations()->setDiffPolyhedron(!(i == tetrahedronIndex));
 		for(int j = 0; j < 4; j++){
 			std::vector<int> triangleVertices = {v[j], v[(j+1)%4], v[(j+2)%4]};
 			int polygonIndex = hashingTree.getRegistry(triangleVertices);

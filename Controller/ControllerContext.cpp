@@ -35,10 +35,10 @@ void ControllerContext::setViewer(CustomGLViewer* viewer){
     this->viewer = viewer;
 }
 
-void ControllerContext::reset(){
+void ControllerContext::reset(Model* model){
     transitionTo(this->modelController);
     float step_count = 1000.0f;
-    std::vector<float> bounds = viewer->getRModel()->bounds;
+    std::vector<float> bounds = model->getBounds();
     if(bounds.size() > 0){
         float var_value = glm::length(
             glm::vec3(
@@ -50,7 +50,6 @@ void ControllerContext::reset(){
         setStepRangeModel(1/step_count, var_value/step_count, var_value);
     }
 }
-
 
 void ControllerContext::setStepRangeModel(float min, float max, float total)
 {
