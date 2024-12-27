@@ -28,6 +28,7 @@ class Plane
 		void setOrigin(glm::vec3);
 		void setNormal(glm::vec3);
 		bool getPointsPlane();
+		void setLengthPlane(float);
 		glm::vec3 getPointPlaneByIndex(int);
 		glm::vec3 getPointsWithValues(float, float, float);
 
@@ -38,6 +39,7 @@ class Plane
 		//a*x + b*y + c*z = d
 		glm::vec3 planeEquation; // a,b,c
 		float d;// d
+		float length;
 		bool ok;
 };
 

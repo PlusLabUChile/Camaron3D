@@ -50,6 +50,7 @@ class ConvexGeometryIntersectionRenderer:public Renderer, public SelectionStrate
 		ConvexGeometryIntersectionConfigSelection* configSelection;
 		GenericConvexGeometry *convexGeometry;
 		RModel *rmodel;
+		float plane_length;
 		CameraCamaron* camera;
 		SphericConvexGeometry* SphereGeometry;
 		ConvexGeometryDefinedByPlanes* PlanesGeometry;

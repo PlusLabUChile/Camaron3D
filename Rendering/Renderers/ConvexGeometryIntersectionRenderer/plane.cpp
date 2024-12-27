@@ -8,6 +8,7 @@ Plane::Plane(glm::vec3 norigin, glm::vec3 v1,glm::vec3 v2):
 	planeEquation(normal)
 {
 	d = glm::dot(origin,normal);
+	length = 500;
 }
 Plane::Plane(glm::vec3 norigin, glm::vec3 nnormal):
 	normal(nnormal),
@@ -15,11 +16,18 @@ Plane::Plane(glm::vec3 norigin, glm::vec3 nnormal):
 	planeEquation(nnormal)
 {
 	d = glm::dot(origin,normal);
+	length = 500;
 	getPointsPlane();
 }
 
 Plane::~Plane(){
 
+}
+
+void Plane::setLengthPlane(float value){
+	length = value;
+	pointsPlane.clear();
+	getPointsPlane();
 }
 
 glm::vec3 Plane::getPointOfIntersection(Plane& p2,Plane& p3){
@@ -42,24 +50,24 @@ void Plane::fixNormal(glm::vec3 p){
 
 bool Plane::getPointsPlane(){
 	if(planeEquation.z != 0){
-		pointsPlane.push_back(getPointsWithValues(-500 + origin.x,500 + origin.y,0));
-		pointsPlane.push_back(getPointsWithValues(-500 + origin.x,-500 + origin.y,0));
-		pointsPlane.push_back(getPointsWithValues(500 + origin.x,500 + origin.y,0));
-		pointsPlane.push_back(getPointsWithValues(500 + origin.x,-500 + origin.y,0));
+		pointsPlane.push_back(getPointsWithValues(-length + origin.x,length + origin.y,0));
+		pointsPlane.push_back(getPointsWithValues(-length + origin.x,-length + origin.y,0));
+		pointsPlane.push_back(getPointsWithValues(length + origin.x,length + origin.y,0));
+		pointsPlane.push_back(getPointsWithValues(length + origin.x,-length + origin.y,0));
 		return true;
 	}
 	else if(planeEquation.y != 0){
-		pointsPlane.push_back(getPointsWithValues(-500 + origin.x, 0, 500 + origin.y));
-		pointsPlane.push_back(getPointsWithValues(-500 + origin.x, 0, -500 + origin.y));
-		pointsPlane.push_back(getPointsWithValues(500 + origin.x, 0, 500 + origin.y));
-		pointsPlane.push_back(getPointsWithValues(500 + origin.x, 0, -500 + origin.y));
+		pointsPlane.push_back(getPointsWithValues(-length + origin.x, 0, length + origin.y));
+		pointsPlane.push_back(getPointsWithValues(-length + origin.x, 0, -length + origin.y));
+		pointsPlane.push_back(getPointsWithValues(length + origin.x, 0, length + origin.y));
+		pointsPlane.push_back(getPointsWithValues(length + origin.x, 0, -length + origin.y));
 		return true;
 	}
 	else if(planeEquation.x != 0){
-		pointsPlane.push_back(getPointsWithValues(0, -500 + origin.y,500 + origin.z));
-		pointsPlane.push_back(getPointsWithValues(0, -500 + origin.y,-500 + origin.z));
-		pointsPlane.push_back(getPointsWithValues(0, 500 + origin.y,500 + origin.z));
-		pointsPlane.push_back(getPointsWithValues(0, 500 + origin.y,-500 + origin.z));
+		pointsPlane.push_back(getPointsWithValues(0, -length + origin.y,length + origin.z));
+		pointsPlane.push_back(getPointsWithValues(0, -length + origin.y,-length + origin.z));
+		pointsPlane.push_back(getPointsWithValues(0, length + origin.y,length + origin.z));
+		pointsPlane.push_back(getPointsWithValues(0, length + origin.y,-length + origin.z));
 		return true;
 	}
 	return false;

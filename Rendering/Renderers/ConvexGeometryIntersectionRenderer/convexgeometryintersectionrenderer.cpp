@@ -21,6 +21,7 @@ ConvexGeometryIntersectionRenderer::ConvexGeometryIntersectionRenderer():
 	SphereGeometry = (SphericConvexGeometry*)0;
 	PlanesGeometry = (ConvexGeometryDefinedByPlanes*)0;
 	rendererWeight = RENDERER_WEIGHT_BASE+4.0f;
+	plane_length = 500.0f;
 
 }
 ConvexGeometryIntersectionRenderer::~ConvexGeometryIntersectionRenderer(){
@@ -101,6 +102,16 @@ bool ConvexGeometryIntersectionRenderer::rmodelChanged(RModel* rmodel){
 		|| rmodel->getOriginalModel()->getPolygonsCount() == 0)
 		return false;
 	this->rmodel = rmodel;
+	std::vector<float>& bounds = rmodel->bounds;
+	if(bounds.size() > 0){
+		plane_length = glm::length(
+			glm::vec3(
+				bounds[3],
+				bounds[4],
+				bounds[5]
+			)
+		);
+	}
 	applyConfigChanges(rmodel);
 	return true;
 }
@@ -192,6 +203,7 @@ void ConvexGeometryIntersectionRenderer::selectNewConvexGeometry(int index){
 	case 1:{
 		PlanesGeometry->deletePlanes();
 		for(Plane* plane: configRenderer->valuePlanes){
+            plane->setLengthPlane(plane_length);
 			PlanesGeometry->addPlane(*plane);
 		}
 		PlanesGeometry->setFromNormal(true);
