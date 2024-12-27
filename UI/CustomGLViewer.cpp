@@ -37,10 +37,9 @@ CustomGLViewer::CustomGLViewer(RModel* renModel, CameraCamaron* camera, MainConf
 	glewInitiatedState = false;
 	this->rmodel = renModel;
 	this->camera = camera;
-	this->camera->resetCameraPositions();
 	resetCameraPositions();
 	this->setFocusPolicy(Qt::ClickFocus);
-	this->camera->setViewMatrix(glm::lookAt( glm::vec3(0.0,0.0,5.0),
+	this->camera->setViewMatrix(glm::lookAt( glm::vec3(0.0,0.0,0.0),
 											 glm::vec3(0.0,0.0,0.0),
 											 glm::vec3(0.0,1.0,0.0)));
 	this->renderer = (Renderer*)0;
@@ -73,7 +72,8 @@ ControllerContext* CustomGLViewer::getController(){
 void CustomGLViewer::resetCameraPositions(){
 	rot = glm::vec3(0.0f,0.0f,0.0f);
 	tra = glm::vec3(0.0f,0.0f,50.0f);
-	zoom = 1.0f;
+	if (this->rmodel) zoom = 1 - this->controller->getMaxLengthModel() * 0.02;
+	else zoom = 1.0f;
 
 	this->camera->setViewMatrix(glm::lookAt(glm::vec3(0.0,0.0,0.0),
 											 glm::vec3(0.0,0.0,0.0),
@@ -96,8 +96,8 @@ void CustomGLViewer::toModelController(){
 
 void CustomGLViewer::reset(Model* model)
 {
-	resetCameraPositions();
 	resetController(model);
+	resetCameraPositions();
 	refreshHelpers();
 }
 

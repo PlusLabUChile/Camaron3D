@@ -11,10 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QMAKE_CXXFLAGS += -std=c++0x
 
-CONFIG   += cmdline precompile_header
-# Use Precompiled headers (PCH)
-PRECOMPILED_HEADER  = stableHeaders.h
-
 # Sanitization flags, use when looking for UB
 ubsan{
     message(Enabling undefined behaviour sanitizer)
@@ -43,6 +39,13 @@ ubsan{
     QMAKE_CXXFLAGS += $${UBSAN_FLAGS}
     QMAKE_LFLAGS_DEBUG += $${UBSAN_FLAGS}
     QMAKE_LFLAGS_RELEASE += $${UBSAN_FLAGS}
+}
+
+build{
+    # Use Precompiled headers (PCH)
+    CONFIG   += cmdline precompile_header
+    PRECOMPILED_HEADER  = stableHeaders.h
+    HEADERS += stableHeaders.h 
 }
 
 #QMAKE_CXXFLAGS += -static-libstdc++
@@ -219,7 +222,6 @@ SOURCES += main.cpp \
     Utils/glps2/gl2ps.c \
 
 HEADERS  += visualizador.h \
-    stableHeaders.h \
     Common/Constants.h \
     EvaluationStrategies/PolyhedronArea.h \
     EvaluationStrategies/PolygonArea.h \
