@@ -74,6 +74,8 @@ void CustomGLViewer::resetCameraPositions(){
 	tra = glm::vec3(0.0f,0.0f,50.0f);
 	if (this->rmodel) zoom = 1 - this->controller->getMaxLengthModel() * 0.02;
 	else zoom = 1.0f;
+	if (zoom < 0) zoom *= -1;
+	std::cout << "zoom: " << zoom << std::endl;
 
 	this->camera->setViewMatrix(glm::lookAt(glm::vec3(0.0,0.0,0.0),
 											 glm::vec3(0.0,0.0,0.0),
