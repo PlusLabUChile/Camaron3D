@@ -220,6 +220,7 @@ SOURCES += main.cpp \
     Controller/GeometryInterController/PlaneControllerState.cpp \
     UI/kernelPop.cpp \
     Utils/glps2/gl2ps.c \
+    ModelLoading/modelloadingsmesh.cpp \
 
 HEADERS  += visualizador.h \
     Common/Constants.h \
@@ -398,6 +399,7 @@ HEADERS  += visualizador.h \
     Controller/GeometryInterController/PlaneControllerState.h \
     UI/kernelPop.h \
     Utils/glps2/gl2ps.h \
+    ModelLoading/modelloadingsmesh.h \
 
 FORMS    += visualizador.ui \
     Rendering/Renderers/ModelMainRenderer/mainrendererconfig.ui \
