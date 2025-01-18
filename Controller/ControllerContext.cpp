@@ -42,9 +42,9 @@ void ControllerContext::reset(Model* model){
     if(bounds.size() > 0){
         float var_value = glm::length(
             glm::vec3(
-                bounds[3],
-                bounds[4],
-                bounds[5]
+                bounds[3] - bounds[0],
+                bounds[4] - bounds[1],
+                bounds[5] - bounds[2]
             )
         );
         setStepRangeModel(1/step_count, var_value/step_count, var_value);

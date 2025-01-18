@@ -71,15 +71,27 @@ ControllerContext* CustomGLViewer::getController(){
 
 void CustomGLViewer::resetCameraPositions(){
 	rot = glm::vec3(0.0f,0.0f,0.0f);
-	tra = glm::vec3(0.0f,0.0f,50.0f);
-	if (this->rmodel) zoom = 1 - this->controller->getMaxLengthModel() * 0.02;
+	tra = glm::vec3(0.0f,0.0f,100.0f);
+	
+	if (this->rmodel){
+		int max_value = this->controller->getMaxLengthModel();
+		float y = 1;
+		int count = 1;
+		for(;max_value > 0 + 1e-10; y=y/10, count*=10, max_value/=10){}
+		//zoom = count - (this->controller->getMaxLengthModel() * y);
+		zoom = (count - this->controller->getMaxLengthModel()) * y;
+	}
 	else zoom = 1.0f;
 	if (zoom < 0) zoom *= -1;
-	std::cout << "zoom: " << zoom << std::endl;
 
 	this->camera->setViewMatrix(glm::lookAt(glm::vec3(0.0,0.0,0.0),
 											 glm::vec3(0.0,0.0,0.0),
 											 glm::vec3(0.0,1.0,0.0)));
+
+double x = 23.1111;
+x -= (int)x;
+unsigned int y = 0;
+for(;x > 0 + 1e-10;++y,x*=10,x-=(int)x){}
 }
 
 void CustomGLViewer::setCameraLookingXY(){
