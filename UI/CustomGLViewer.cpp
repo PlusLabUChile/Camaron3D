@@ -75,11 +75,13 @@ void CustomGLViewer::resetCameraPositions(){
 	
 	if (this->rmodel){
 		int max_value = this->controller->getMaxLengthModel();
+		std::cout << "Max value: " << max_value << std::endl;
 		float y = 1;
 		int count = 1;
 		for(;max_value > 0 + 1e-10; y=y/10, count*=10, max_value/=10){}
 		//zoom = count - (this->controller->getMaxLengthModel() * y);
-		zoom = (count - this->controller->getMaxLengthModel()) * y;
+		zoom = (count - this->controller->getMaxLengthModel()) * y * 0.6;
+		std::cout << "Initial zoom: " << zoom << std::endl;
 	}
 	else zoom = 1.0f;
 	if (zoom < 0) zoom *= -1;

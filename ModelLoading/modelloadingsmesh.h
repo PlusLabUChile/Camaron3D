@@ -38,7 +38,8 @@ class ModelLoadingSmesh: public ModelLoadingStrategy
 
         // Region Attributes
         int numberOfRegion;
-		std::vector<std::vector<int>> attributesNodes;
+		std::vector<std::vector<float>> attributesNodes;
+		
 		StreamScanner parser;
 		std::unordered_map<int,int> indexVsPosition;
 		std::string path;

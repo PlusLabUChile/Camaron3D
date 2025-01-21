@@ -38,8 +38,8 @@ class ModelLoadingEleNode: public ModelLoadingStrategy
 		std::unordered_map<int,int> indexVsPosition;
 		std::string path;
 
-		std::vector<std::vector<int>> attributesNodes;
-		std::vector<std::vector<int>> attributesElements;
+		std::vector<std::vector<float>> attributesNodes;
+		std::vector<std::vector<float>> attributesElements;
 
 };
 
