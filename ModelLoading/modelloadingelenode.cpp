@@ -123,6 +123,11 @@ void ModelLoadingEleNode::readHeaderEle(Model* model){
 		default:
 			throw ModelLoadingException(path, "Unrecognized model type");
 		}
+	attributesElements.reserve(numberOfAttributesPerElement);
+	for(int i = 0; i < numberOfAttributesPerElement; i++){
+		attributesElements.emplace_back();
+		attributesElements[i].reserve(numberOfElements);
+	}
 	parser.closeFile();
 }
 
@@ -143,7 +148,12 @@ void ModelLoadingEleNode::readHeaderNode(Model* model){
     // Buscar sobre el significado del segundo valor dimension
     // model->set2D(dimensions==2);
 	model->reserveVertices(numberOfNodes);
+	attributesNodes.reserve(numberOfAttributesPerNode);
+	for(int i = 0; i < numberOfAttributesPerNode; i++){
+		attributesNodes.emplace_back();
+		attributesNodes[i].reserve(numberOfNodes);
 	}
+}
 
 
 /***
@@ -166,7 +176,7 @@ void ModelLoadingEleNode::readVertices(Model* mesh){
 	std::vector<float> &bounds = mesh->getBounds();
 	ElementsRelations* relations = mesh->getElementsRelations();
 
-	int index;
+	int index, attrNode;
 	float x = 0.0f, y = 0.0f, z = 0.0f;
 	vertices.reserve(numberOfNodes);
 	for(int i = 0; i< numberOfNodes; i++){
@@ -182,6 +192,15 @@ void ModelLoadingEleNode::readVertices(Model* mesh){
 		updateBoundingBox(bounds, x, y, z);
 
 		if(i==0) mesh->getElementsRelations()->setDiffVertex(!(i == index));
+
+		for(int n = 0; n < numberOfAttributesPerNode; n++){
+			parser >> attrNode;
+			attributesNodes[n].push_back(attrNode);
+		}
+
+		if(numberOfBoundaryMarkers){
+			// Add boundary markers for vertices
+		}
 
 		if(i%5000==0)
 			emit setLoadedVertices(i);

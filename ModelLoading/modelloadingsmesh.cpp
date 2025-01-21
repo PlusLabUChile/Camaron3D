@@ -71,8 +71,8 @@ void ModelLoadingSmesh::readVerticesSmesh(Model* model){
     std::vector<vis::Vertex>& vertices = model->getVertices();
     std::vector<float>& bounds = model->getBounds();
     ElementsRelations* relations = model->getElementsRelations();
-
-    int index;
+    
+	int index, attrNode;
     float x = 0.0f, y = 0.0f, z = 0.0f;
     model->reserveVertices(numberOfNodes);
     for(int i = 0; i < numberOfNodes; i++){
@@ -87,7 +87,10 @@ void ModelLoadingSmesh::readVerticesSmesh(Model* model){
         if(i == 0) model->getElementsRelations()->setDiffVertex(!(i == index));
         if(i%1000 == 0) emit setLoadedVertices(i);
 
-        // Code for attributes when numberOfAttributesNode is not equal to 0
+		for(int n = 0; n < numberOfAttributesPerNode; n++){
+			parser >> attrNode;
+			this->attributesNodes[n].push_back(attrNode);
+		}
 
         parser.prepareNextLine();
     }
@@ -104,7 +107,7 @@ void ModelLoadingSmesh::readVerticesNode(Model* model){
 	std::vector<float> &bounds = model->getBounds();
 	ElementsRelations* relations = model->getElementsRelations();
 
-	int index;
+	int index, attrNode;
 	float x = 0.0f, y = 0.0f, z = 0.0f;
 	vertices.reserve(numberOfNodes);
 	for(int i = 0; i< numberOfNodes; i++){
@@ -120,6 +123,12 @@ void ModelLoadingSmesh::readVerticesNode(Model* model){
 		updateBoundingBox(bounds, x, y, z);
 
 		if(i==0) model->getElementsRelations()->setDiffVertex(!(i == index));
+
+		for(int n = 0; n < numberOfAttributesPerNode; n++){
+			parser >> attrNode;
+			this->attributesNodes[n].push_back(attrNode);
+		}
+        
 		if(i%5000==0)
 			emit setLoadedVertices(i);
 
