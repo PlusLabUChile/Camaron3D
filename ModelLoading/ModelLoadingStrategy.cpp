@@ -78,31 +78,6 @@ void ModelLoadingStrategy::completeMesh(Model* mesh){
 		processPolygons(mesh);
 		}
 	}
-
-/*
-void ModelLoadingStrategy::getEdgesAndPolygons(Model* mesh, std::vector<unsigned int>& vertices, unsigned int idPolygon){
-	for(unsigned int j = 0; j < vertices.size(); j++){
-		unsigned int v0, v1;
-		if (j == vertices.size() - 1){
-			v0 = vertices[0], v1 = vertices[j];
-		}
-		else{
-			v0 = vertices[j], v1 = vertices[j+1];
-		}
-		if(v0 > v1) std::swap(v0,v1);
-		std::pair<unsigned int, unsigned int> edge(v0,v1);
-		auto it = mesh->getElementsRelations()->getEdgesPolygons().find(edge);
-		if(it == mesh->getElementsRelations()->getEdgesPolygons().end()){
-			mesh->getElementsRelations()->getEdgesPolygons().insert(std::make_pair(edge, std::make_pair(idPolygon, idPolygon)));
-		}
-		else{
-			it->second.second = idPolygon;
-			mesh->getElementsRelations()->getPolygonsPolygonsById(idPolygon).push_back(it->second.first);
-			mesh->getElementsRelations()->getPolygonsPolygonsById(it->second.first).push_back(idPolygon);
-		}
-	}
-}
-*/
 	
 void ModelLoadingStrategy::processPolygons(Model* mesh){
 	MeshProcessor::completeVertexPolygonRelations(mesh);

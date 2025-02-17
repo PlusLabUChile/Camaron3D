@@ -53,7 +53,6 @@ class ModelLoadingStrategy: public QThread {
 
 		void updateBoundingBox(std::vector<float>& bounds, float x, float y, float z);
 		void completeMesh(Model*);
-		//void getEdgesAndPolygons(Model*, std::vector<unsigned int>&, unsigned int idPolygon);
 		virtual void processPolygons(Model*);
 		virtual void processPolyhedrons(Model*);
 

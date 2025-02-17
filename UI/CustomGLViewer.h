@@ -33,12 +33,23 @@ class CustomGLViewer: public QGLWidget
 		void glewInitiated();
 		void refreshHelpers();
 		void setAxesVisible(bool value);
-		void resetCameraPositions();
 		void setCameraLookingXY();
 
 		// Reset functions
-		void resetController(Model*);
+		/**
+		 * This call reset's functions for different component of Camaron, like camera and controller 
+		 */
 		void reset(Model*);
+
+		/**
+		 * Set Camera's values to default
+		 */
+		void resetCameraPositions();
+
+		/**
+		 * Set Controller's values to default
+		 */
+		void resetController(Model*);
 		void toModelController();
 
 		// Getters Functions

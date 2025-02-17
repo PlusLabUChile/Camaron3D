@@ -148,10 +148,10 @@ void ModelLoadingEleNode::readHeaderNode(Model* model){
     // Buscar sobre el significado del segundo valor dimension
     // model->set2D(dimensions==2);
 	model->reserveVertices(numberOfNodes);
-	attributesNodes.reserve(numberOfAttributesPerNode);
+	model->getAttributesNodes().reserve(numberOfAttributesPerNode);
 	for(int i = 0; i < numberOfAttributesPerNode; i++){
-		attributesNodes.emplace_back();
-		attributesNodes[i].reserve(numberOfNodes);
+		model->getAttributesNodes().emplace_back();
+		model->getAttributesNodesById(i).reserve(numberOfNodes);
 	}
 }
 
@@ -195,7 +195,7 @@ void ModelLoadingEleNode::readVertices(Model* mesh){
 
 		for(int n = 0; n < numberOfAttributesPerNode; n++){
 			parser >> attrNode;
-			attributesNodes[n].push_back(attrNode);
+			mesh->getAttributesNodesById(n).push_back(attrNode);
 		}
 
 		if(numberOfBoundaryMarkers){

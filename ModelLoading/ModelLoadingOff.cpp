@@ -17,7 +17,6 @@ ModelLoadingOff::~ModelLoadingOff(){
 bool ModelLoadingOff::validate(std::string filename){
 	parser.setCurrentEncoding(Encoding::ASCII);
 	parser.openFile(filename);
-
 	std::string word;
 
 	parser >> word;

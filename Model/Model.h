@@ -79,6 +79,12 @@ class Model {
 		std::vector<std::shared_ptr<PropertyFieldDef>> &getPropertyFieldDefs();
 		void addPropertyFieldDef(std::shared_ptr<PropertyFieldDef>);
 
+		// Attributes field
+		std::vector<std::vector<float>>& getAttributesNodes();
+		std::vector<std::vector<float>>& getAttributesFaces();
+		std::vector<float>& getAttributesNodesById(int);
+		std::vector<float>& getAttributesFacesById(int);
+
 		// Ele Node specific workaround (see below)
 		bool is2D();
 		void set2D(bool b);
@@ -103,6 +109,17 @@ class Model {
 		*/
 		std::vector<std::shared_ptr<PropertyFieldDef>> propertyFieldDefs;
 		std::map<PropertyFieldDef*,unsigned char> propertyFieldPositions;
+
+		/**
+		 * Attributes fields
+		 * The model save this type of value obtained when a .ele, .node or .smesh files
+		 * is loaded. The data for each attribute is stores in two vectors:
+		 * 		- attributesNode: saves attributes of vertex, this is obtained by .node or .smesh files
+		 * 		- attributesFaces: saves attributes of faces, this is obtained by .ele files
+		 */
+
+		std::vector<std::vector<float>> attributesNodes;
+		std::vector<std::vector<float>> attributesFaces;
 
 		/***
 		*  In the case of the Ele/Node files, the two supported tools (TRIANGLE

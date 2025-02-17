@@ -1,6 +1,8 @@
 #ifndef STREAMSCANNER_H
 #define STREAMSCANNER_H
 #include <fstream>
+#include <iostream>
+#include <cctype> 
 #include "Utils/endianess.h"
 
 enum class Encoding {

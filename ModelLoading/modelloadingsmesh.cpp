@@ -59,7 +59,7 @@ void ModelLoadingSmesh::readHeaderSmesh(Model* model){
         parser.closeFile();
         readVerticesNode(model);
         parser.openFile(path+".smesh");
-        parser.prepareNextLine();
+        parser.prepareNextLine(); // Skip nodes lines
     }
     else{
         readVerticesSmesh(model);
@@ -87,10 +87,12 @@ void ModelLoadingSmesh::readVerticesSmesh(Model* model){
         if(i == 0) model->getElementsRelations()->setDiffVertex(!(i == index));
         if(i%1000 == 0) emit setLoadedVertices(i);
 
+        /*
 		for(int n = 0; n < numberOfAttributesPerNode; n++){
 			parser >> attrNode;
 			this->attributesNodes[n].push_back(attrNode);
 		}
+        */
 
         parser.prepareNextLine();
     }
@@ -124,11 +126,12 @@ void ModelLoadingSmesh::readVerticesNode(Model* model){
 
 		if(i==0) model->getElementsRelations()->setDiffVertex(!(i == index));
 
+        /*
 		for(int n = 0; n < numberOfAttributesPerNode; n++){
 			parser >> attrNode;
 			this->attributesNodes[n].push_back(attrNode);
 		}
-        
+        */
 		if(i%5000==0)
 			emit setLoadedVertices(i);
 

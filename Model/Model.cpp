@@ -75,6 +75,7 @@ int Model::getPolyhedronsCount(){
 
 void Model::reserveVertices(int n){
 	vertices.reserve(n);
+    attributesNodes.reserve(n);
 	}
 
 void Model::reserveAdditionalEdges(int n){
@@ -83,6 +84,7 @@ void Model::reserveAdditionalEdges(int n){
 
 void Model::reservePolygons(int n){
 	polygons.reserve(n);
+    attributesFaces.reserve(n);
 	}
 
 void Model::reservePolyhedrons(int n){
@@ -108,6 +110,23 @@ unsigned char Model::getPropertyFieldPosition(PropertyFieldDef* pfd) {
 std::vector<std::shared_ptr<PropertyFieldDef>>& Model::getPropertyFieldDefs() {
 	return propertyFieldDefs;
 }
+
+std::vector<std::vector<float>>& Model::getAttributesNodes(){
+	return attributesNodes;
+}
+
+std::vector<std::vector<float>>& Model::getAttributesFaces(){
+	return attributesFaces;
+}
+
+std::vector<float> &Model::getAttributesNodesById(int index){
+	return attributesNodes[index];
+}
+
+std::vector<float> &Model::getAttributesFacesById(int index){
+	return attributesFaces[index];
+}
+
 
 ///@deprecated Remove after reworking model
 

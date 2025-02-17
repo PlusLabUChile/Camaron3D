@@ -13,6 +13,12 @@ bool StreamScanner::openFile(std::string filename){
 		return false; ///@note Should throw an exception
 
 	file.seekg(0, std::ios::beg);
+	char n = file.peek();
+	while(!std::isdigit(n) && n == '#'){
+		std::string lineBuffer;
+		std::getline(file, lineBuffer);
+		n = file.peek();
+	}
 	return true;
 	}
 
@@ -24,11 +30,11 @@ void StreamScanner::prepareNextLine(int offset){
 	if (fileType == Encoding::ASCII){
 		std::string lineBuffer;
 		std::getline(file, lineBuffer);
-		}
+	}
 	else {
 		file.ignore(offset);
-		}
 	}
+}
 
 void StreamScanner::setCurrentEncoding(Encoding current){
 	fileType = current;
